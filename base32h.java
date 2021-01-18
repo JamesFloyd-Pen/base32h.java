@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class base32h {
 
     /*
@@ -38,14 +40,22 @@ public class base32h {
     "Zz"
 };
 
-
-
     String encode(int n)
     {
-        if(n == 0)
+        int rem = n;
+        ArrayList<String> out = new ArrayList<>();
+
+
+        while(rem > 0)
         {
-            return "0";
+            //Add a new element in the first element
+            //Then remm & 32 to 
+            //use temp value  temp/32 for the loop to continue until 0
+            out.add(0,digits[rem % 32].substring(0,1));
+            rem = rem/32;
         }
+
+        System.out.println(" test " + out);
 
         String answer = String.valueOf(n);
         return answer;
@@ -69,16 +79,10 @@ public class base32h {
         return n;
     }
 
-    static void testMe()
-    {
-        System.out.println("Hello World!");
-
-    }
-
     public static void main(String[] args) {
         /* TODO code application logic here
 
-            1. Create the Encoder for Decimal first
+            1. Create the Encoder for Decimal first | Completed
             2. Create the decoder for Decimal Second
             3. Test both Hell0World, alongside test cases to pass the first part.
             4. Build both the binary for encoder
@@ -86,9 +90,7 @@ public class base32h {
             6. Test test for both
         */
         base32h baseh = new base32h();
+        baseh.encode(1234567890);
 
-        base32h.testMe();
-        System.out.println(baseh.encode(5));
-        
     }
 }
