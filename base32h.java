@@ -1,33 +1,73 @@
 public class base32h {
 
-    int encodeDecimal(int n)
-    {
-        int answer = 0;
+    /*
+    canonical list, alongside the Alias
+    */
+    public final String[] digits =
+    {"0Oo",
+    "1Ii",
+    "2",
+    "3",
+    "4",
+    "5Ss",
+    "6",
+    "7",
+    "8",
+    "9",
+    "Aa",
+    "Bb",
+    "Cc",
+    "Dd",
+    "Ee",
+    "Ff",
+    "Gg",
+    "Hh",
+    "Jj",
+    "Kk",
+    "Ll",
+    "Mn",
+    "Nn",
+    "Pp",
+    "Qq",
+    "Rr",
+    "Tt",
+    "VvUu",
+    "Ww",
+    "Xx",
+    "Yy",
+    "Zz"
+};
 
+
+
+    String encode(int n)
+    {
+        if(n == 0)
+        {
+            return "0";
+        }
+
+        String answer = String.valueOf(n);
         return answer;
     }
 
 
-    int encodeBinary(int n)
+    int encodeBin(int n)
     {
         int i = 0;
 
         return i;
     }
 
-    int decodeDecimal(int n)
+    int decode(int n)
     {
-
         return n;
     }
 
-    int decodeBinary(int n)
+    int decodeBin(int n)
     {
-
         return n;
     }
-
-
 
     static void testMe()
     {
@@ -45,6 +85,10 @@ public class base32h {
             5. Build the binary decoder
             6. Test test for both
         */
+        base32h baseh = new base32h();
+
         base32h.testMe();
+        System.out.println(baseh.encode(5));
+        
     }
 }
