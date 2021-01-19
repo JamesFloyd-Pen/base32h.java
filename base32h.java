@@ -72,7 +72,28 @@ public class base32h {
     ArrayList<Integer> decode(String input)
     {
         ArrayList acc = new ArrayList<>();
+        ArrayList<Character> rem = new ArrayList<Character>();
         int exp = 0;
+
+        for(int i = 0; i<input.length(); i++)
+        {
+            rem.add(input.charAt(i));
+        }
+
+        while(rem.size() > 0)
+        {
+            /*
+            int digit = decodeDigit(rem.pop());
+
+            if(digit < 0 )
+            {
+                continue;
+            }
+
+            acc.add(digit * 32**exp);
+            exp += 1;
+            */
+        }
         
         return acc;
     }
@@ -94,7 +115,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        System.out.println(baseh.encode(888));
+        System.out.println(baseh.encode(17854910));
 
     }
 }
