@@ -6,7 +6,8 @@ public class base32h {
     canonical list, alongside the Alias
     */
     public final String[] digits =
-    {"0Oo",
+    {
+    "0Oo",
     "1Ii",
     "2",
     "3",
@@ -38,27 +39,27 @@ public class base32h {
     "Xx",
     "Yy",
     "Zz"
-};
+    };
 
-    String encode(int n)
+    ArrayList<String> encode(int n)
     {
         int rem = n;
-        ArrayList<String> out = new ArrayList<>();
-
+        ArrayList out = new ArrayList<>();
+        
+        if(rem == 0){
+            System.out.println("0");
+            out.add("0");
+            return out;
+        }
 
         while(rem > 0)
         {
-            //Add a new element in the first element
-            //Then remm & 32 to 
-            //use temp value  temp/32 for the loop to continue until 0
             out.add(0,digits[rem % 32].substring(0,1));
             rem = rem/32;
         }
 
         System.out.println(" test " + out);
-
-        String answer = String.valueOf(n);
-        return answer;
+        return out;
     }
 
 
@@ -88,9 +89,10 @@ public class base32h {
             4. Build both the binary for encoder
             5. Build the binary decoder
             6. Test test for both
+            7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.encode(1234567890);
+        baseh.encode(750);
 
     }
 }
