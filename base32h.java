@@ -46,8 +46,8 @@ public class base32h {
         int rem = n;
         ArrayList out = new ArrayList<>();
         
-        if(rem == 0){
-            System.out.println("0");
+        if(rem == 0)
+        {
             out.add("0");
             return out;
         }
@@ -58,7 +58,6 @@ public class base32h {
             rem = rem/32;
         }
 
-        System.out.println(" test " + out);
         return out;
     }
 
@@ -70,9 +69,12 @@ public class base32h {
         return i;
     }
 
-    int decode(int n)
+    ArrayList<Integer> decode(String input)
     {
-        return n;
+        ArrayList acc = new ArrayList<>();
+        int exp = 0;
+        
+        return acc;
     }
 
     int decodeBin(int n)
@@ -92,7 +94,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.encode(750);
+        System.out.println(baseh.encode(888));
 
     }
 }
