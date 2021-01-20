@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.lang.model.element.Element;
 
 public class base32h {
 
@@ -69,6 +72,13 @@ public class base32h {
         return i;
     }
 
+    int decodeDigit(Element input )
+    {
+        //Fix up the input to find the specific character in the array
+        int index = Arrays.asList(digits).indexOf(input);
+        return index;
+    }
+
     ArrayList<Integer> decode(String input)
     {
         ArrayList acc = new ArrayList<>();
@@ -115,7 +125,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        System.out.println(baseh.encode(17854910));
+        //System.out.println(baseh.encode(17854910));
 
     }
 }
