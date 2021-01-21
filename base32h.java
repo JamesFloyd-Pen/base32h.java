@@ -72,10 +72,20 @@ public class base32h {
         return i;
     }
 
-    int decodeDigit(Element input )
+    int decodeDigit(String input )
     {
+        int index = -1;
+        for(int i = 0; i < digits.length; i++)
+        {
+            if(digits[i].contains(input))
+            {
+                index = i;
+                break;
+            }
+        }
         //Fix up the input to find the specific character in the array
-        int index = Arrays.asList(digits).indexOf(input);
+        //int index = Arrays.asList(digits).indexOf(input);
+        System.out.println(index);
         return index;
     }
 
@@ -125,6 +135,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
+        baseh.decodeDigit("o");
         //System.out.println(baseh.encode(17854910));
 
     }
