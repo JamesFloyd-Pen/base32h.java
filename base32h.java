@@ -84,9 +84,8 @@ public class base32h {
         return index;
     }
 
-    ArrayList<Integer> decode(String input)
+    int decode(String input)
     {
-        ArrayList acc = new ArrayList<>();
         String[] rem = input.split("(?!^)");
         int exp = 0;
         int temp = rem.length;
@@ -103,18 +102,25 @@ public class base32h {
             {
                 continue;
             }
-            answer = digit;
-            answer *= (int) Math.pow(32, exp);
-             //counter += answer
 
-            //acc.add(answer);
+            answer += digit * exponent(32, exp);
             exp += 1;
         }
 
-
         System.out.print(answer);
-        return acc;
+        return answer;
     }
+
+    int exponent(int num, int exp)
+    {
+        int result =1;
+
+        for(int i=0; i<exp; i++)
+            result *=num;
+
+        return result;
+    }
+
 
     int decodeBin(int n)
     {
@@ -125,7 +131,7 @@ public class base32h {
         /* TODO code application logic here
 
             1. Create the Encoder for Decimal first | Completed
-            2. Create the decoder for Decimal Second
+            2. Create the decoder for Decimal Second | Partialty works
             3. Test both Hell0World, alongside test cases to pass the first part.
             4. Build both the binary for encoder
             5. Build the binary decoder
