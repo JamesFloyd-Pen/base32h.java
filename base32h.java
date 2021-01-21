@@ -116,8 +116,9 @@ public class base32h {
         int result =1;
 
         for(int i=0; i<exp; i++)
+        {
             result *=num;
-
+        }
         return result;
     }
 
@@ -139,7 +140,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("ZzZ");
+        baseh.decode("zZz");
         //System.out.println(baseh.encode(17854910));
 
     }
