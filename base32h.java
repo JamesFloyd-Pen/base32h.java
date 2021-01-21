@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.lang.model.element.Element;
 
 public class base32h {
 
@@ -83,8 +80,6 @@ public class base32h {
                 break;
             }
         }
-        //Fix up the input to find the specific character in the array
-        //int index = Arrays.asList(digits).indexOf(input);
         System.out.println(index);
         return index;
     }
@@ -92,29 +87,32 @@ public class base32h {
     ArrayList<Integer> decode(String input)
     {
         ArrayList acc = new ArrayList<>();
-        ArrayList<Character> rem = new ArrayList<Character>();
+        String[] rem = input.split("(?!^)");
         int exp = 0;
+        int temp = rem.length;
+        int i=0;
+        int answer = 0;
 
-        for(int i = 0; i<input.length(); i++)
+        while(temp > 0)
         {
-            rem.add(input.charAt(i));
-        }
-
-        while(rem.size() > 0)
-        {
-            /*
-            int digit = decodeDigit(rem.pop());
+            int digit = decodeDigit(rem[i]);
+            i+=1;
+            temp-=1;
 
             if(digit < 0 )
             {
                 continue;
             }
+            answer = digit;
+            answer *= (int) Math.pow(32, exp);
+             //counter += answer
 
-            acc.add(digit * 32**exp);
+            //acc.add(answer);
             exp += 1;
-            */
         }
-        
+
+
+        System.out.print(answer);
         return acc;
     }
 
@@ -135,7 +133,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decodeDigit("o");
+        baseh.decode("ZzZ");
         //System.out.println(baseh.encode(17854910));
 
     }
