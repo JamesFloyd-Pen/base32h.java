@@ -5,8 +5,7 @@ public class base32h {
     /*
     canonical list, alongside the Alias
     */
-    public final String[] digits =
-    {
+    public final String[] digits = {
     "0Oo",
     "1Ii",
     "2",
@@ -41,19 +40,16 @@ public class base32h {
     "Zz"
     };
 
-    ArrayList<String> encode(int n)
-    {
+    ArrayList<String> encode(int n) {
         int rem = n;
         ArrayList out = new ArrayList<>();
         
-        if(rem == 0)
-        {
+        if(rem == 0) {
             out.add("0");
             return out;
         }
 
-        while(rem > 0)
-        {
+        while(rem > 0) {
             out.add(0,digits[rem % 32].substring(0,1));
             rem = rem/32;
         }
@@ -61,20 +57,16 @@ public class base32h {
         return out;
     }
 
-    int encodeBin(int n)
-    {
+    int encodeBin(int n) {
         int i = 0;
 
         return i;
     }
 
-    int decodeDigit(String input )
-    {
+    int decodeDigit(String input) {
         int index = -1;
-        for(int i = 0; i < digits.length; i++)
-        {
-            if(digits[i].contains(input))
-            {
+        for(int i = 0; i < digits.length; i++) {
+            if(digits[i].contains(input)) {
                 index = i;
                 break;
             }
@@ -83,24 +75,20 @@ public class base32h {
         return index;
     }
 
-    int decode(String input)
-    {
+    int decode(String input) {
         String[] rem = input.split("(?!^)");
         int exp = 0, i = 0, answer = 0;
         int temp = rem.length;
 
-        while(temp > 0)
-        {
+        while(temp > 0) {
             int digit = decodeDigit(rem[i]);
             i+=1;
             temp-=1;
 
-            if(digit < 0 )
-            {
+            if(digit < 0) {
                 continue;
             }
 
-            //answer += digit * exponent(32, exp);
             answer += digit * (int) Math.pow(32, exp);
             exp++;
         }
@@ -109,8 +97,7 @@ public class base32h {
         return answer;
     }
 
-    int decodeBin(int n)
-    {
+    int decodeBin(int n) {
         return n;
     }
 
@@ -126,8 +113,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("g19o");
+        baseh.decode("ZzZzZ");
         //System.out.println(baseh.encode(614236187289229));
-
     }
 }
