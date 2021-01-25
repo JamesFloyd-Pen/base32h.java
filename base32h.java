@@ -61,7 +61,6 @@ public class base32h {
         return out;
     }
 
-
     int encodeBin(int n)
     {
         int i = 0;
@@ -87,10 +86,8 @@ public class base32h {
     int decode(String input)
     {
         String[] rem = input.split("(?!^)");
-        int exp = 0;
+        int exp = 0, i = 0, answer = 0;
         int temp = rem.length;
-        int i=0;
-        int answer = 0;
 
         while(temp > 0)
         {
@@ -140,8 +137,8 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("zZz");
-        //System.out.println(baseh.encode(17854910));
+        baseh.decode("1a");
+        //System.out.println(baseh.encode(614236187289229));
 
     }
 }
