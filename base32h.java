@@ -100,25 +100,14 @@ public class base32h {
                 continue;
             }
 
-            answer += digit * exponent(32, exp);
-            exp += 1;
+            //answer += digit * exponent(32, exp);
+            answer += digit * (int) Math.pow(32, exp);
+            exp++;
         }
 
         System.out.print(answer);
         return answer;
     }
-
-    int exponent(int num, int exp)
-    {
-        int result =1;
-
-        for(int i=0; i<exp; i++)
-        {
-            result *=num;
-        }
-        return result;
-    }
-
 
     int decodeBin(int n)
     {
@@ -137,7 +126,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("1a");
+        baseh.decode("g19o");
         //System.out.println(baseh.encode(614236187289229));
 
     }
