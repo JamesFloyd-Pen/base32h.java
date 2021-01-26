@@ -86,13 +86,14 @@ public class base32h {
         return index;
     }
 
-    int decode(String input) {
+    long decode(String input) {
         String[] rem = input.split("(?!^)");
-        int exp = 0, i = rem.length, answer = 0;
+        int i = rem.length;
+        long answer = 0, exp =0;
         int temp = rem.length;
 
         while(temp > 0) {
-            int digit = decodeDigit(rem[i-1]);
+            long digit = decodeDigit(rem[i-1]);
             i-=1;
             temp-=1;
 
@@ -100,7 +101,7 @@ public class base32h {
                 continue;
             }
 
-            answer += digit * (int) Math.pow(32, exp);
+            answer += digit * (long) Math.pow(32, exp);
             exp++;
         }
 
@@ -116,15 +117,15 @@ public class base32h {
         /* TODO code application logic here
 
             1. Create the Encoder for Decimal first | Completed
-            2. Create the decoder for Decimal Second | Partialty works
-            3. Test both Hell0World, alongside test cases to pass the first part.
+            2. Create the decoder for Decimal Second | Completed
+            3. Test both Hell0World, alongside test cases to pass the first part. |Completed
             4. Build both the binary for encoder
             5. Build the binary decoder
             6. Test test for both
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("88pzd");
+        baseh.decode("Hell0World");
         //int[] test = {255, 255, 255, 255, 255};
         //int overflow = test.length % 5;
         //System.out.println(overflow);
