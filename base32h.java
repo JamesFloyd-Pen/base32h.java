@@ -57,10 +57,21 @@ public class base32h {
         return out;
     }
 
-    int encodeBin(int n) {
-        int i = 0;
+    String encodeBin(int[] input) {
+        
+        int overflow = input.length % 5;
+        if(overflow == 0) {
+           // input = [...(5 - overflow), ...input];
+        }
+        
+        String acc = "";
+        
+        for(int i = 0; i <input.length; i+=5) {
+            //int segment = input.slice[i];
 
-        return i;
+        }
+
+        return acc;
     }
 
     int decodeDigit(String input) {
@@ -77,12 +88,12 @@ public class base32h {
 
     int decode(String input) {
         String[] rem = input.split("(?!^)");
-        int exp = 0, i = 0, answer = 0;
+        int exp = 0, i = rem.length, answer = 0;
         int temp = rem.length;
 
         while(temp > 0) {
-            int digit = decodeDigit(rem[i]);
-            i+=1;
+            int digit = decodeDigit(rem[i-1]);
+            i-=1;
             temp-=1;
 
             if(digit < 0) {
@@ -113,7 +124,11 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("ZzZzZ");
+        baseh.decode("88pzd");
+        //int[] test = {255, 255, 255, 255, 255};
+        //int overflow = test.length % 5;
+        //System.out.println(overflow);
+        //baseh.encodeBin(test);
         //System.out.println(baseh.encode(614236187289229));
     }
 }
