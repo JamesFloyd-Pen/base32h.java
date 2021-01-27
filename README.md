@@ -8,4 +8,4 @@ In Work in Progress
 
 - Encode Binary 
 - Decode Binary
-- Clean Up and Specs
+- Clean Up and Test Cases
