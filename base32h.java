@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class base32h {
 
@@ -57,21 +58,42 @@ public class base32h {
         return out;
     }
 
-    String encodeBin(int[] input) {
-        
+    ArrayList<String> encodeBin(int[] input) {
+        ArrayList output = new ArrayList<>();
+
         int overflow = input.length % 5;
         if(overflow == 0) {
-           // input = [...(5 - overflow), ...input];
+            Arrays.fill(input, overflow, 5, 0);
         }
-        
-        String acc = "";
-        
+ 
         for(int i = 0; i <input.length; i+=5) {
-            //int segment = input.slice[i];
+            int segment = input[i];
+            int segInt;
+            
+            //output.add(padAnswer);
+        }
+        
+        
+        return output;
+    }
 
+    /*
+    The pad makes sure the input returns with exact 8 digits
+    */
+
+    ArrayList<String> pad(ArrayList<String> input) {
+
+        //String z = "Z" || "0";
+
+        int o = input.size() % 8;
+        if(o != 0) {
+            for(int i = 0; i < 8-o; i++) {
+                input.add(i, "0");
+            }
+            return input;
         }
 
-        return acc;
+        return input;
     }
 
     int decodeDigit(String input) {
@@ -82,7 +104,7 @@ public class base32h {
                 break;
             }
         }
-        System.out.println(index);
+
         return index;
     }
 
@@ -105,12 +127,17 @@ public class base32h {
             exp++;
         }
 
-        System.out.print(answer);
         return answer;
     }
 
-    int decodeBin(int n) {
-        return n;
+    int decodeBin(String input) {
+        
+        /*
+        for(int i = 0; i < input.length; i += 8) {
+
+        }
+        */
+        return 0;
     }
 
     public static void main(String[] args) {
@@ -118,18 +145,20 @@ public class base32h {
 
             1. Create the Encoder for Decimal first | Completed
             2. Create the decoder for Decimal Second | Completed
-            3. Test both Hell0World, alongside test cases to pass the first part. |Completed
-            4. Build both the binary for encoder
+            3. Test both Hell0World, alongside test cases to pass the first part. | Completed
+            4. Build the binary encoder
             5. Build the binary decoder
             6. Test test for both
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        baseh.decode("Hell0World");
+        //baseh.decode("Hell0World");
         //int[] test = {255, 255, 255, 255, 255};
-        //int overflow = test.length % 5;
-        //System.out.println(overflow);
         //baseh.encodeBin(test);
         //System.out.println(baseh.encode(614236187289229));
+       ArrayList<String> testME = new ArrayList<>();
+       testME.add("7");
+
+       System.out.println(baseh.pad(testME));
     }
 }
