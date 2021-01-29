@@ -17,6 +17,6 @@ In Work in Progress
 base32h.encode(17854910)
 --> [H, 0, W, D, Y]
 
-base32h.decode
+base32h.decode("88pzd")
 --> 8675309
 ```
