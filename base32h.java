@@ -60,29 +60,30 @@ public class base32h {
 
     ArrayList<String> encodeBin(int[] input) {
         ArrayList output = new ArrayList<>();
-        
-        ArrayList<Integer> segment = new ArrayList<>();
         ArrayList padded = new ArrayList<>();
 
         
-        int overflow = input.length % 5;
-        if(overflow == 0) {
-            Arrays.fill(input, overflow, 5, 0);
-        }
+        //int overflow = input.length % 5;
+       // if(overflow == 0) {
+            //Arrays.fill(input, overflow, 5, 0);
+        //}
 
         for(int i = 0; i <input.length; i+=5) {
-            segment.add(i, i+5);
-            int segInt = bytesToUint40(segment);
-            padded.addAll(encode(segInt));
+            input = Arrays.copyOfRange(input, i, i+5);
+            int segment = bytesToUint40(input);
+            System.out.println(segment);
+       
+            padded.addAll(encode(segment));
             output.addAll(padded);
         }
+        System.out.println(output);
 
         return output;
     }
 
-    int bytesToUint40(ArrayList<Integer> input) {
+    int bytesToUint40(int[] input) {
          
-        return input.get(0)*(int) Math.pow(2, 32) + input.get(1)*(int) Math.pow(2, 24) + input.get(2)*(int) Math.pow(2, 16) + input.get(3)*(int) Math.pow(2, 8) + input.get(4);
+        return input[0]*(int) Math.pow(2, 32) + input[1]*(int) Math.pow(2, 24) + input[2]*(int) Math.pow(2, 16) + input[3]*(int) Math.pow(2, 8) + input[4];
     }
 
     /*
@@ -160,15 +161,19 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        //int[] test = {255,255,255,255,255};
-        //System.out.println(baseh.encodeBin(test));
+        int[] test = {255};
+        System.out.println(baseh.encodeBin(test));
         //baseh.encodeBin(test);
-        System.out.println(baseh.encode(314));
-        //ArrayList<Integer> testME = new ArrayList<>();
-        //testME.add(2);
-        //System.out.println(baseh.bytesToUint40(testME));
-        //System.out.print(baseh.encode(84213758));
-
+        //System.out.println(baseh.encode(314));
+       /*
+        ArrayList<Integer> testME = new ArrayList<>();
+        testME.add(2);
+        testME.add(2);
+        testME.add(2);
+        testME.add(1);
+        System.out.println(baseh.bytesToUint40(testME));
+        */
+        //System.out.print(baseh.decode("88pzd"));
 
        //System.out.println(baseh.pad(testME));
     }
