@@ -63,10 +63,11 @@ public class base32h {
         ArrayList padded = new ArrayList<>();
 
         
-        //int overflow = input.length % 5;
-       // if(overflow == 0) {
+        int overflow = input.length % 5;
+        if(overflow == 0) {
+            input = Arrays.copyOfRange(input, 5, 0);
             //Arrays.fill(input, overflow, 5, 0);
-        //}
+        }
 
         for(int i = 0; i <input.length; i+=5) {
             input = Arrays.copyOfRange(input, i, i+5);
@@ -83,7 +84,7 @@ public class base32h {
 
     int bytesToUint40(int[] input) {
          
-        return input[0]*(int) Math.pow(2, 32) + input[1]*(int) Math.pow(2, 24) + input[2]*(int) Math.pow(2, 16) + input[3]*(int) Math.pow(2, 8) + input[4];
+        return input[0]*(int) Math.pow(32, 2) + input[1]*(int) Math.pow(24, 2) + input[2]*(int) Math.pow(16, 2) + input[3]*(int) Math.pow(8, 2) + input[4];
     }
 
     /*
