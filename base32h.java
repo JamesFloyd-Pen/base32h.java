@@ -64,20 +64,20 @@ public class base32h {
 
         
         int overflow = input.length % 5;
-        if(overflow == 0) {
-            input = Arrays.copyOfRange(input, 5, 0);
-            //Arrays.fill(input, overflow, 5, 0);
+        if(overflow != 0) {
+            input = Arrays.copyOf(input, input.length +  5-overflow);
+            input = moveToLastElement(input);
+            for(int a: input)
+                System.out.print(a + " ");
         }
 
         for(int i = 0; i <input.length; i+=5) {
             input = Arrays.copyOfRange(input, i, i+5);
             int segment = bytesToUint40(input);
-            System.out.println(segment);
-       
             padded.addAll(encode(segment));
+            pad(padded);
             output.addAll(padded);
         }
-        System.out.println(output);
 
         return output;
     }
@@ -93,8 +93,6 @@ public class base32h {
 
     ArrayList<String> pad(ArrayList<String> input) {
 
-        //String z = "Z" || "0";
-
         int o = input.size() % 8;
         if(o != 0) {
             for(int i = 0; i < 8-o; i++) {
@@ -104,6 +102,22 @@ public class base32h {
         }
 
         return input;
+    }
+
+    int[] moveToLastElement(int[] n) {
+
+        for(int i = 0; i < n.length; i++) {
+            if(n[i] != 0) {
+                int temp = n[i];
+                n[i] = 0;
+                if(n[n.length - 1] == 0)
+                    n[n.length - 1] = temp;
+                else
+                    n[n.length - 2]  = temp;
+            }
+        }
+    
+        return n;
     }
 
     int decodeDigit(String input) {
@@ -156,7 +170,7 @@ public class base32h {
             1. Create the Encoder for Decimal first | Completed
             2. Create the decoder for Decimal Second | Completed
             3. Test both Hell0World, alongside test cases to pass the first part. | Completed
-            4. Build the binary encoder
+            4. Build the binary encoder | Mostly done, requires optimization.
             5. Build the binary decoder
             6. Test test for both
             7. Create the method/JSON for command line 
@@ -164,18 +178,5 @@ public class base32h {
         base32h baseh = new base32h();
         int[] test = {255};
         System.out.println(baseh.encodeBin(test));
-        //baseh.encodeBin(test);
-        //System.out.println(baseh.encode(314));
-       /*
-        ArrayList<Integer> testME = new ArrayList<>();
-        testME.add(2);
-        testME.add(2);
-        testME.add(2);
-        testME.add(1);
-        System.out.println(baseh.bytesToUint40(testME));
-        */
-        //System.out.print(baseh.decode("88pzd"));
-
-       //System.out.println(baseh.pad(testME));
     }
 }
