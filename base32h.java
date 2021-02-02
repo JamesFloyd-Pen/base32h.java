@@ -105,18 +105,18 @@ public class base32h {
     }
 
     int[] moveToLastElement(int[] n) {
-
-        for(int i = 0; i < n.length; i++) {
-            if(n[i] != 0) {
-                int temp = n[i];
-                n[i] = 0;
-                if(n[n.length - 1] == 0)
-                    n[n.length - 1] = temp;
-                else
-                    n[n.length - 2]  = temp;
+        
+        for(int k = 0; k < n.length; k++) {
+            int temp = n[k];
+            if(n[k] != 0)
+            {
+                for(int i = 0; i < n.length-1; i++) {
+                    n[i] = n[i+1];
+                }
+                n[4] = temp;
             }
         }
-    
+      
         return n;
     }
 
@@ -176,7 +176,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        int[] test = {255};
+        int[] test = {255, 255, 255};
         System.out.println(baseh.encodeBin(test));
     }
 }
