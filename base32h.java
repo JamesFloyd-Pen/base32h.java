@@ -154,14 +154,32 @@ public class base32h {
         return answer;
     }
 
-    int decodeBin(String input) {
-        
-        /*
-        for(int i = 0; i < input.length; i += 8) {
+    ArrayList<Integer> decodeBin(String input) {
+        ArrayList<Integer> output = new ArrayList<>();
+        String[] rem = input.split("(?!^)");
 
+        for(int i = 0; i < rem.length; i += 8) {
+            String segment = Arrays.copyOfRange(rem, i, i+8).toString();
+            long val = decode(segment);
+            output.addAll(uint40ToBytes(val));
         }
+    
+        return output;
+    }
+
+    ArrayList<Integer> uint40ToBytes(long input){
+        ArrayList<Integer> output = new ArrayList<>();
+        //int padded = pad(long.toString());
+        /*
+        Pseudo Code
+        output.add(0, padded.substring(0,2));
+        output.add(1, padded.substring(2,4));
+        output.add(2, padded.substring(4,6));
+        output.add(3, padded.substring(6,8));
+        output.add(4, padded.substring(8,10));
         */
-        return 0;
+
+        return output;
     }
 
     public static void main(String[] args) {
@@ -176,7 +194,8 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        int[] test = {255, 255, 255};
-        System.out.println(baseh.encodeBin(test));
+        //int[] test = {255, 255};
+        //System.out.println(baseh.encodeBin(test));
+        System.out.println(baseh.encode(16575));
     }
 }
