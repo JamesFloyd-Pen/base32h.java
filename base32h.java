@@ -106,17 +106,14 @@ public class base32h {
 
     int[] moveToLastElement(int[] n) {
         
-        for(int k = 0; k < n.length; k++) {
-            int temp = n[k];
-            if(n[k] != 0)
-            {
-                for(int i = 0; i < n.length-1; i++) {
-                    n[i] = n[i+1];
-                }
-                n[4] = temp;
+        int count = 0;
+        for(int i = 0; i < n.length; i++) {
+            if(n[i] == 0) {
+                n[i] = n[count];
+                n[count++] = 0;
             }
         }
-      
+
         return n;
     }
 
@@ -169,7 +166,7 @@ public class base32h {
 
     ArrayList<Integer> uint40ToBytes(long input){
         ArrayList<Integer> output = new ArrayList<>();
-        //int padded = pad(long.toString());
+        //String padded = pad(String.valueOf(input)));
         /*
         Pseudo Code
         output.add(0, padded.substring(0,2));
@@ -194,8 +191,8 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        //int[] test = {255, 255};
-        //System.out.println(baseh.encodeBin(test));
-        System.out.println(baseh.encode(16575));
+        int[] test = {255, 255, 255};
+        System.out.println(baseh.encodeBin(test));
+        //System.out.println(baseh.encode(16575));
     }
 }
