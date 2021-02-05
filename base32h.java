@@ -66,7 +66,7 @@ public class base32h {
         int overflow = input.length % 5;
         if(overflow != 0) {
             input = Arrays.copyOf(input, input.length +  5-overflow);
-            input = moveToLastElement(input);
+            input = moveZeroesToLeft(input);
             for(int a: input)
                 System.out.print(a + " ");
         }
@@ -104,7 +104,7 @@ public class base32h {
         return input;
     }
 
-    int[] moveToLastElement(int[] n) {
+    int[] moveZeroesToLeft(int[] n) {
         
         int count = 0;
         for(int i = 0; i < n.length; i++) {
@@ -191,7 +191,9 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        int[] test = {255, 255, 255};
+        int[] test = {255};
+        //To produce "HowdyPartner"
+        int[] test2 = {227,169,72,131,141,245,213,150,217,217};
         System.out.println(baseh.encodeBin(test));
         //System.out.println(baseh.encode(16575));
     }
