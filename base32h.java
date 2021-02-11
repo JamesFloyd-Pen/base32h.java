@@ -43,8 +43,6 @@ public class base32h {
 
     ArrayList<String> encode(long n) {
         long rem = n;
-        long temp = rem % 32;
-        int indexPointer = (int) temp;
         ArrayList out = new ArrayList<>();
         
         if(rem == 0) {
@@ -53,6 +51,8 @@ public class base32h {
         }
 
         while(rem > 0) {
+            long temp = rem % 32;
+            int indexPointer = (int) temp;
             out.add(0,digits[indexPointer % 32].substring(0,1));
             rem = rem/32;
         }
@@ -77,8 +77,7 @@ public class base32h {
             input = Arrays.copyOfRange(input, i, i+5);
             long segment = bytesToUint40(input);
             padded.addAll(encode(segment));
-            pad(padded);
-            output.addAll(padded);
+            output.addAll(pad(padded));
         }
 
         return output;
@@ -193,7 +192,7 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        int[] test = {255, 255,255,255,255, 255};
+        int[] test = {255, 255, 255, 255, 255, 255};
         //To produce "HowdyPartner"
         //int[] test2 = {227,169,72,131,141,245,213,150,217,217};
         System.out.println(baseh.encodeBin(test));
