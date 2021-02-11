@@ -84,7 +84,7 @@ public class base32h {
 
     int bytesToUint40(int[] input) {
          
-        return input[0]*(int) Math.pow(32, 2) + input[1]*(int) Math.pow(24, 2) + input[2]*(int) Math.pow(16, 2) + input[3]*(int) Math.pow(8, 2) + input[4];
+        return input[0]*(int) Math.pow(2, 32) + input[1]*(int) Math.pow(2, 24) + input[2]*(int) Math.pow(2, 16) + input[3]*(int) Math.pow(2, 8) + input[4];
     }
 
     /*
@@ -191,9 +191,9 @@ public class base32h {
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        int[] test = {255};
+        int[] test = {255,255,255};
         //To produce "HowdyPartner"
-        int[] test2 = {227,169,72,131,141,245,213,150,217,217};
+        //int[] test2 = {227,169,72,131,141,245,213,150,217,217};
         System.out.println(baseh.encodeBin(test));
         //System.out.println(baseh.encode(16575));
     }
