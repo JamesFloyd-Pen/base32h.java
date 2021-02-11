@@ -62,22 +62,19 @@ public class base32h {
 
     ArrayList<String> encodeBin(int[] input) {
         ArrayList output = new ArrayList<>();
-        ArrayList padded = new ArrayList<>();
 
         
         int overflow = input.length % 5;
         if(overflow != 0) {
             input = Arrays.copyOf(input, input.length +  5-overflow);
             input = moveZeroesToLeft(input);
-            for(int a: input)
-                System.out.print(a + " ");
         }
 
         for(int i = 0; i <input.length; i+=5) {
-            input = Arrays.copyOfRange(input, i, i+5);
-            long segment = bytesToUint40(input);
-            padded.addAll(encode(segment));
-            output.addAll(pad(padded));
+            int[] segment  = Arrays.copyOfRange(input, i, i+5);
+            long segLong = bytesToUint40(segment);
+            output.addAll(encode(segLong));
+            pad(output);
         }
 
         return output;
@@ -186,16 +183,16 @@ public class base32h {
             1. Create the Encoder for Decimal first | Completed
             2. Create the decoder for Decimal Second | Completed
             3. Test both Hell0World, alongside test cases to pass the first part. | Completed
-            4. Build the binary encoder | Mostly done, requires optimization.
+            4. Build the binary encoder | Done.
             5. Build the binary decoder
             6. Test test for both
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        int[] test = {255, 255, 255, 255, 255, 255};
+        //int[] test = {255, 255, 255, 255, 255, 255, 255, 255, 255, 255};
         //To produce "HowdyPartner"
-        //int[] test2 = {227,169,72,131,141,245,213,150,217,217};
-        System.out.println(baseh.encodeBin(test));
+        int[] test2 = {227,169,72,131,141,245,213,150,217,217};
+        System.out.println(baseh.encodeBin(test2));
         //System.out.println(baseh.encode(16575));
     }
 }
