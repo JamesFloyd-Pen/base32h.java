@@ -19,4 +19,7 @@ base32h.encode(17854910)
 
 base32h.decode("88pzd")
 --> 8675309
+
+base32h.encodeBin([227,169,72,131,141,245,213,150,217,217])
+-->[W, E, L, L, H, 0, W, D, Y, P, A, R, D, N, E, R]
 ```
