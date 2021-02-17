@@ -22,4 +22,7 @@ base32h.decode("88pzd")
 
 base32h.encodeBin([227,169,72,131,141,245,213,150,217,217])
 -->[W, E, L, L, H, 0, W, D, Y, P, A, R, D, N, E, R]
+
+base32h.decodeBin("2060W2G6009")
+-->[0, 0, 0, 8, 6, 7, 5, 3, 0, 9]
 ```
