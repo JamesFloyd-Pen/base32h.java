@@ -162,7 +162,7 @@ public class base32h {
             String[] simpleArray = Arrays.copyOfRange(temp, i, i+8);
             String segment = String.join("",simpleArray);
             long val = decode(segment);
-            output.addAll(0, IntStream.of(uint40ToBytes(val)).boxed().collect(Collectors.toCollection(ArrayList::new)));          
+            output.addAll(IntStream.of(uint40ToBytes(val)).boxed().collect(Collectors.toCollection(ArrayList::new)));          
         }
         return output;
     }
@@ -200,12 +200,12 @@ public class base32h {
             1. Create the Encoder for Decimal first | Completed
             2. Create the decoder for Decimal Second | Completed
             3. Test both Hell0World, alongside test cases to pass the first part. | Completed
-            4. Build the binary encoder | Done.
-            5. Build the binary decoder | Close to done!
-            6. Test test for both
+            4. Build the binary encoder | Completed
+            5. Build the binary decoder | Completed
+            6. Test test for both | Completed
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        System.out.println(baseh.decodeBin("zZzZzZzZzZzZzZzZ"));
+        System.out.println(baseh.decodeBin("2060W2G6009"));
     }
 }
