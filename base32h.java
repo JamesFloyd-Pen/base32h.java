@@ -162,7 +162,7 @@ public class base32h {
             String[] simpleArray = Arrays.copyOfRange(temp, i, i+8);
             String segment = String.join("",simpleArray);
             long val = decode(segment);
-            output = IntStream.of(uint40ToBytes(val)).boxed().collect(Collectors.toCollection(ArrayList::new));          
+            output.addAll(0, IntStream.of(uint40ToBytes(val)).boxed().collect(Collectors.toCollection(ArrayList::new)));          
         }
         return output;
     }
