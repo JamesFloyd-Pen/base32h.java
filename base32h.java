@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class base32h {
 
@@ -151,10 +153,7 @@ public class base32h {
     ArrayList<Integer> decodeBin(String input) {
         ArrayList<Integer> output = new ArrayList<>();
         ArrayList<String> padded = new ArrayList<>();
-        String[] rem = input.split("(?!^)");
-        for(String name: rem)
-            padded.add(name);
-        pad(padded);
+        padded.addAll(stringToArraylist(input));
         String[] temp = new String[padded.size()];
 
         for(int i = 0; i < padded.size(); i += 8) {
@@ -163,40 +162,36 @@ public class base32h {
             String[] simpleArray = Arrays.copyOfRange(temp, i, i+8);
             String segment = String.join("",simpleArray);
             long val = decode(segment);
-            String segString = String.valueOf(val);
-            output.addAll(uint40ToBytes(segString));
+            output = IntStream.of(uint40ToBytes(val)).boxed().collect(Collectors.toCollection(ArrayList::new));          
         }
-    
         return output;
     }
 
-    ArrayList<Integer> uint40ToBytes(String input){
-        ArrayList<Integer> output = new ArrayList<>();
-        ArrayList<String> padded = new ArrayList<>();
-        String charSplit = "(?!^)";
-        String[] rem = input.split(charSplit);
-        for(String name: rem)
-            padded.add(name);
-        pad(padded);
-        padded.add(0, "0");
-        padded.add(0, "0");
-
-
-        StringBuilder out = new StringBuilder();
-        for(Object a: padded) {
-                out.append(a.toString());
+    ArrayList<String> stringToArraylist(String input) {
+        ArrayList<String> output = new ArrayList<>();
+        String[] rem = input.split("(?!^)");
+        for(int i = 0; i < rem.length; i++) {
+            int answer = decodeDigit(rem[i]);
+            if(answer != -1) {
+                output.add(String.valueOf(rem[i]));
             }
-        String segment = out.toString();
-
-        System.out.print(segment);
-
-        output.add(0, Integer.parseInt(segment.substring(0,2)));
-        output.add(1, Integer.parseInt(segment.substring(2,4)));
-        output.add(2, Integer.parseInt(segment.substring(4,6)));
-        output.add(3, Integer.parseInt(segment.substring(6,8)));
-        output.add(4, Integer.parseInt(segment.substring(8,10)));
+        }
+        pad(output);
 
         return output;
+    }
+
+    int[] uint40ToBytes(long input){
+        int[] bytes = {0,0,0,0,0};
+        for(int idx = bytes.length-1; idx >= 0; idx--) {
+            float myByte = input & 0xff;
+            bytes[idx] = (int) myByte;
+            input = (input - (long) myByte) / 256;
+            if(input == 0) {
+                break;
+            }
+        }
+        return bytes;
     }
 
     public static void main(String[] args) {
@@ -206,11 +201,11 @@ public class base32h {
             2. Create the decoder for Decimal Second | Completed
             3. Test both Hell0World, alongside test cases to pass the first part. | Completed
             4. Build the binary encoder | Done.
-            5. Build the binary decoder | Requires optimization 
+            5. Build the binary decoder | Close to done!
             6. Test test for both
             7. Create the method/JSON for command line 
         */
         base32h baseh = new base32h();
-        System.out.println(baseh.decodeBin("7z"));
+        System.out.println(baseh.decodeBin("zZzZzZzZzZzZzZzZ"));
     }
 }
