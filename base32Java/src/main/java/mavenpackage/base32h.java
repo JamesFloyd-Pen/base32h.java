@@ -1,3 +1,5 @@
+package base32Java.src.main.java.mavenpackage;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -194,18 +196,4 @@ public class base32h {
         return bytes;
     }
 
-    public static void main(String[] args) {
-        /* TODO code application logic here
-
-            1. Create the Encoder for Decimal first | Completed
-            2. Create the decoder for Decimal Second | Completed
-            3. Test both Hell0World, alongside test cases to pass the first part. | Completed
-            4. Build the binary encoder | Completed
-            5. Build the binary decoder | Completed
-            6. Test test for both | Completed
-            7. Create the method/JSON for command line 
-        */
-        base32h baseh = new base32h();
-        System.out.println(baseh.decodeBin("2060W2G6009"));
-    }
 }
