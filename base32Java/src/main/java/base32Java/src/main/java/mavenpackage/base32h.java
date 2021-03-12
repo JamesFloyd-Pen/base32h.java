@@ -8,7 +8,10 @@ import java.util.stream.IntStream;
 public class base32h {
 
     /*
-    canonical list, alongside the Alias
+     * The first character of each element is the "canonical" representation
+     * emitted by the encoder.  All other characters are "aliases"; a decoder
+     * will convert the canonical character or an alias thereof to the
+     * corresponding value.
     */
     public final String[] digits = {
     "0Oo",
