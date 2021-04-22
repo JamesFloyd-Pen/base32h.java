@@ -4,6 +4,10 @@
 
 It's the Java implementation for  https://base32h.github.io/
 
+## Language Used
+- Java
+- Maven
+
 ## How to use?
 
 ```
