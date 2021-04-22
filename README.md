@@ -2,11 +2,12 @@
 
 ## What is it?
 
-It's the Java implementation for  https://base32h.github.io/
+It's the Java implementation for https://base32h.github.io/
 
-## Language Used
+## Language and Tools Used
 - Java
 - Maven
+- Visual Studio Code
 
 ## How to use?
 
@@ -23,3 +24,6 @@ base32h.encodeBin([227,169,72,131,141,245,213,150,217,217])
 base32h.decodeBin("2060W2G6009")
 -->[0, 0, 0, 8, 6, 7, 5, 3, 0, 9]
 ```
+
+
+
