@@ -1,7 +1,5 @@
 package base32Java.src.test.java.mavenpackage;
 
-import base32Java.src.main.java.mavenpackage.base32h;
-
 public class specs {
     static base32h baseh = new base32h();
 
@@ -9,7 +7,8 @@ public class specs {
         specs mySpecs = new specs();
 
         //System.out.println(baseh.decodeBin("2060W2G6009"));
-        mySpecs.testDecodeBin();
+        mySpecs.testEncode();
+        //mySpecs.testDecodeBin();
     }
 
     public void testEncode() {

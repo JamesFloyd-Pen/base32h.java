@@ -1,4 +1,4 @@
-package base32Java.src.main.java.mavenpackage;
+package base32Java.src.test.java.mavenpackage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,19 +49,18 @@ public class base32h {
     };
 
     public ArrayList<String> encode(long n) {
-        long rem = n;
         ArrayList<String> out = new ArrayList<>();
         
-        if(rem == 0) {
+        if(n == 0) {
             out.add("0");
             return out;
         }
 
-        while(rem > 0) {
-            long temp = rem % 32;
+        while(n > 0) {
+            long temp = n % 32;
             int indexPointer = (int) temp;
             out.add(0,digits[indexPointer % 32].substring(0,1));
-            rem = rem/32;
+            n = n/32;
         }
 
         return out;
