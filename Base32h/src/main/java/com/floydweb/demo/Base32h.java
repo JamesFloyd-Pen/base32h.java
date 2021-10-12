@@ -1,11 +1,11 @@
-package base32Java.src.test.java.mavenpackage;
+package com.floydweb.demo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class base32h {
+public class Base32h {
 
     /*
      * The first character of each element is the "canonical" representation
@@ -13,7 +13,7 @@ public class base32h {
      * will convert the canonical character or an alias thereof to the
      * corresponding value.
     */
-    public final String[] digits = {
+    public final static String[] digits = {
     "0Oo",
     "1Ii",
     "2",
@@ -48,7 +48,7 @@ public class base32h {
     "Zz"
     };
 
-    public ArrayList<String> encode(long n) {
+    public static ArrayList<String> encode(long n) {
         ArrayList<String> out = new ArrayList<>();
         
         if(n == 0) {
@@ -66,7 +66,7 @@ public class base32h {
         return out;
     }
 
-    public ArrayList<String> encodeBin(int[] input) {
+    public static ArrayList<String> encodeBin(int[] input) {
         ArrayList<String> output = new ArrayList<>();
 
         int overflow = input.length % 5;
@@ -85,7 +85,7 @@ public class base32h {
         return output;
     }
 
-    private long bytesToUint40(int[] input) {
+    private static long bytesToUint40(int[] input) {
          
         return input[0]*(long) Math.pow(2, 32) + input[1]*(long) Math.pow(2, 24) + input[2]*(long) Math.pow(2, 16) + input[3]*(long) Math.pow(2, 8) + input[4];
     }
@@ -94,7 +94,7 @@ public class base32h {
     The pad makes sure the input returns with exact 8 digits
     */
 
-    private ArrayList<String> pad(ArrayList<String> input) {
+    private static ArrayList<String> pad(ArrayList<String> input) {
 
         int o = input.size() % 8;
         if(o != 0) {
@@ -107,7 +107,7 @@ public class base32h {
         return input;
     }
 
-    private int[] moveZeroesToLeft(int[] n) {
+    private static int[] moveZeroesToLeft(int[] n) {
         
         int count = 0;
         for(int i = 0; i < n.length; i++) {
@@ -120,7 +120,7 @@ public class base32h {
         return n;
     }
 
-    private int decodeDigit(String input) {
+    private static int decodeDigit(String input) {
         int index = -1;
         for(int i = 0; i < digits.length; i++) {
             if(digits[i].contains(input)) {
@@ -132,7 +132,7 @@ public class base32h {
         return index;
     }
 
-    public long decode(String input) {
+    public static long decode(String input) {
         String[] rem = input.split("(?!^)");
         int i = rem.length;
         long answer = 0, exp =0;
@@ -154,7 +154,7 @@ public class base32h {
         return answer;
     }
 
-    public ArrayList<Integer> decodeBin(String input) {
+    public static ArrayList<Integer> decodeBin(String input) {
         ArrayList<Integer> output = new ArrayList<>();
         ArrayList<String> padded = new ArrayList<>();
         padded.addAll(stringToArraylist(input));
@@ -171,7 +171,7 @@ public class base32h {
         return output;
     }
 
-    private ArrayList<String> stringToArraylist(String input) {
+    private static ArrayList<String> stringToArraylist(String input) {
         ArrayList<String> output = new ArrayList<>();
         String[] rem = input.split("(?!^)");
         for(int i = 0; i < rem.length; i++) {
@@ -185,7 +185,7 @@ public class base32h {
         return output;
     }
 
-    private int[] uint40ToBytes(long input) {
+    private static int[] uint40ToBytes(long input) {
         int[] bytes = {0,0,0,0,0};
         for(int idx = bytes.length-1; idx >= 0; idx--) {
             float myByte = input & 0xff;
